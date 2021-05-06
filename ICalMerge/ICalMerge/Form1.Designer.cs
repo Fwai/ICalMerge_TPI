@@ -39,19 +39,20 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlFusion = new System.Windows.Forms.Panel();
             this.lblFusion = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnFusion = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.pnlSources.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.pnlFusion.SuspendLayout();
             this.SuspendLayout();
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(304, 15);
+            this.button2.Location = new System.Drawing.Point(17, 15);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(160, 34);
             this.button2.TabIndex = 6;
@@ -60,6 +61,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button4);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Location = new System.Drawing.Point(-2, -3);
             this.panel2.Name = "panel2";
@@ -153,15 +155,15 @@
             this.button1.Text = "parcourir";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // pnlFusion
             // 
-            this.panel1.Controls.Add(this.lblFusion);
-            this.panel1.Controls.Add(this.progressBar1);
-            this.panel1.Controls.Add(this.btnFusion);
-            this.panel1.Location = new System.Drawing.Point(12, 157);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(743, 128);
-            this.panel1.TabIndex = 8;
+            this.pnlFusion.Controls.Add(this.lblFusion);
+            this.pnlFusion.Controls.Add(this.progressBar1);
+            this.pnlFusion.Controls.Add(this.btnFusion);
+            this.pnlFusion.Location = new System.Drawing.Point(12, 157);
+            this.pnlFusion.Name = "pnlFusion";
+            this.pnlFusion.Size = new System.Drawing.Size(743, 128);
+            this.pnlFusion.TabIndex = 8;
             // 
             // lblFusion
             // 
@@ -190,6 +192,16 @@
             this.btnFusion.Text = "Fusionner";
             this.btnFusion.UseVisualStyleBackColor = true;
             // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(183, 15);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(160, 34);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "Retirer une source";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
             // formIcal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -197,15 +209,15 @@
             this.ClientSize = new System.Drawing.Size(767, 297);
             this.Controls.Add(this.pnlSources);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlFusion);
             this.Name = "formIcal";
             this.ShowIcon = false;
             this.Text = "IcalMerge";
             this.panel2.ResumeLayout(false);
             this.pnlSources.ResumeLayout(false);
             this.pnlSources.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnlFusion.ResumeLayout(false);
+            this.pnlFusion.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -222,10 +234,11 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlFusion;
         private System.Windows.Forms.Label lblFusion;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button btnFusion;
+        private System.Windows.Forms.Button button4;
     }
 }
 
