@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ICalMerge
@@ -37,16 +32,21 @@ namespace ICalMerge
             // Vérifie si l'on a atteint la limite de sources maximale.
             if (listSources.Count == 10)
             {
-                // Création d'une nouvelle source
-                SourceComponents newSource = new SourceComponents(pnlSources, Convert.ToSByte(listSources.Count()));
-                listSources.Add(newSource);
+                // Comme il y'a déjà le maximum de sources, nous prévenons l'utilisateur grâce à un message box.
+                MessageBox.Show("La limite de fichiers source a été atteinte");
             }
             else
             {
-                // Comme il y'a déjà le maximum de sources, nous prévenons l'utilisateur grâce à un message box.
-                MessageBox.Show("La limite du nombre de source a été atteinte");
+                // Création d'une nouvelle source
+                SourceComponents newSource = new SourceComponents(pnlSources, Convert.ToSByte(listSources.Count()),pnlFusion,this);
+                listSources.Add(newSource);
             }
 
+        }
+
+        private void BtnAddSource_Click(object sender, EventArgs e)
+        {
+            AddSource();
         }
     }
 }
