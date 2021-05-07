@@ -99,5 +99,20 @@ namespace ICalMerge
             pnlContainer.Controls.Add(BtnBrowse);
             pnlContainer.Controls.Add(LblEventResult);
         }
+
+        /// <summary>
+        /// Permet de détruire tous ses contrôles et de rétablir 
+        /// </summary>
+        /// <param name="pnlContainer">Panel qui contient les contrôles de cet objet</param>
+        /// <param name="pnlFusion">Panel en dessous de pnlContainer</param>
+        /// <param name="mainForm">Formulaire principal</param>
+        public void Destruct(Panel pnlContainer, Panel pnlFusion, Form mainForm)
+        {
+            pnlContainer.Size = new System.Drawing.Size(pnlContainer.Size.Width, pnlContainer.Size.Height - 30);
+            pnlFusion.Location = new System.Drawing.Point(pnlFusion.Location.X, pnlFusion.Location.Y - 30);
+            mainForm.Size = new System.Drawing.Size(mainForm.Size.Width, mainForm.Size.Height - 30);
+
+            LblSourceName = null;
+        }
     }
 }

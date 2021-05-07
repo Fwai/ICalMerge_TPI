@@ -44,9 +44,22 @@ namespace ICalMerge
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        private void RemoveSource()
+        {
+
+        }
+
         private void BtnAddSource_Click(object sender, EventArgs e)
         {
             AddSource();
+        }
+
+        private void BtnRemoveSource_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

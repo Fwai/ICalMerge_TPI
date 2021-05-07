@@ -36,6 +36,7 @@
             this.lblFusion = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnFusion = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.pnlFusion.SuspendLayout();
             this.SuspendLayout();
@@ -69,6 +70,7 @@
             this.btnRemoveSource.TabIndex = 7;
             this.btnRemoveSource.Text = "Retirer une source";
             this.btnRemoveSource.UseVisualStyleBackColor = true;
+            this.btnRemoveSource.Click += new System.EventHandler(this.BtnRemoveSource_Click);
             // 
             // pnlSources
             // 
@@ -79,6 +81,7 @@
             // 
             // pnlFusion
             // 
+            this.pnlFusion.Controls.Add(this.textBox1);
             this.pnlFusion.Controls.Add(this.lblFusion);
             this.pnlFusion.Controls.Add(this.progressBar1);
             this.pnlFusion.Controls.Add(this.btnFusion);
@@ -114,6 +117,13 @@
             this.btnFusion.Text = "Fusionner";
             this.btnFusion.UseVisualStyleBackColor = true;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(48, 39);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(133, 20);
+            this.textBox1.TabIndex = 3;
+            // 
             // formIcal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -141,6 +151,7 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button btnFusion;
         private System.Windows.Forms.Button btnRemoveSource;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
