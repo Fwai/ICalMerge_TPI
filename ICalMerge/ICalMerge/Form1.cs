@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ICalMerge
 {
@@ -58,6 +59,18 @@ namespace ICalMerge
         }
 
         private void BtnRemoveSource_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.ShowDialog();
+
+                richTextBox1.Text += "\n" + folderBrowserDialog1.SelectedPath;
+        }
+
+        private void OpenFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
         }

@@ -36,6 +36,10 @@
             this.lblFusion = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnFusion = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.panel2.SuspendLayout();
             this.pnlFusion.SuspendLayout();
             this.SuspendLayout();
@@ -80,6 +84,8 @@
             // 
             // pnlFusion
             // 
+            this.pnlFusion.Controls.Add(this.richTextBox1);
+            this.pnlFusion.Controls.Add(this.button1);
             this.pnlFusion.Controls.Add(this.lblFusion);
             this.pnlFusion.Controls.Add(this.progressBar1);
             this.pnlFusion.Controls.Add(this.btnFusion);
@@ -104,6 +110,7 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(310, 23);
             this.progressBar1.TabIndex = 1;
+            this.progressBar1.Value = 50;
             // 
             // btnFusion
             // 
@@ -114,6 +121,29 @@
             this.btnFusion.TabIndex = 0;
             this.btnFusion.Text = "Fusionner";
             this.btnFusion.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(629, 36);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "testExport";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.OpenFileDialog1_FileOk);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(17, 22);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(100, 96);
+            this.richTextBox1.TabIndex = 4;
+            this.richTextBox1.Text = "";
             // 
             // formIcal
             // 
@@ -142,6 +172,10 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button btnFusion;
         private System.Windows.Forms.Button btnRemoveSource;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 
