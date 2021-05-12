@@ -54,7 +54,6 @@ namespace ICalMerge
 
             // Affichage des contrôles
             ShowSourceControls(pnlContainer, location);
-
         }
 
 
