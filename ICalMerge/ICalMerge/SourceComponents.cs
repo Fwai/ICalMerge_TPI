@@ -22,7 +22,7 @@ namespace ICalMerge
         const string DEFAULT_TEXT_EVENT_RESULT = "Analyse attendue";
 
         // Ce sont tous les contrôles qui vont être affichés visuellement à l'utilisateur.
-        private Label lblSourceName; // Permet d'afficher le titre et le numéro de la source. Exmeple "Source 2"
+        private Label lblSourceName; // Permet d'afficher le titre et le numéro de la source. Exemple "Source 2"
         private TextBox tbSourcePath; // Permet à l'utilisateur de voir le chemin de son fichier et de le changer à la main 
         private Button btnBrowse; // Permet à l'utilisateur d'ouvrir une fenêtre lui permettant d'importer un fichier
         private Label lblEventResult; // Permet d'afficher le nombre d'événements que contient le fichier.

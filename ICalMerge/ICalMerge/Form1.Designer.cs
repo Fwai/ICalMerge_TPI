@@ -111,7 +111,6 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(310, 23);
             this.progressBar1.TabIndex = 1;
-            this.progressBar1.Value = 50;
             // 
             // btnFusion
             // 
