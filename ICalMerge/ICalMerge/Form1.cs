@@ -8,7 +8,8 @@ namespace ICalMerge
 {
     public partial class formIcal : Form
     {
-        // Définit une liste de sources. Les sources ont des composants visuels ainsi que des valeurs pouvant stocker le chemin d'une source définie par l'utilisateur.
+        /* Définit une liste de sources. Les sources ont des composants visuels
+           ainsi que des valeurs pouvant stocker le chemin d'une source définie par l'utilisateur. */
         List<SourceComponents> listSources;
 
         /// <summary>
@@ -39,17 +40,28 @@ namespace ICalMerge
             else
             {
                 // Création d'une nouvelle source
-                SourceComponents newSource = new SourceComponents(pnlSources, Convert.ToSByte(listSources.Count()),pnlFusion,this);
+                SourceComponents newSource = new SourceComponents(pnlSources, Convert.ToSByte(listSources.Count()),pnlFusion,this,opfdOpenFile);
                 listSources.Add(newSource);
             }
 
         }
 
         /// <summary>
-        /// 
+        /// Permet d'initier la supression d'une source. Se produit seulement si il
+        /// y en a plus que deux
         /// </summary>
         private void RemoveSource()
         {
+            if (listSources.Count == 2)
+            {
+                MessageBox.Show("Le programme nécessite deux sources au minimum");
+            }
+            else
+            {
+                listSources[listSources.Count - 1].Destruct(pnlSources, pnlFusion, this);
+                listSources[listSources.Count - 1] = null;
+                listSources.RemoveAt(listSources.Count-1);
+            }
 
         }
 
@@ -58,9 +70,15 @@ namespace ICalMerge
             AddSource();
         }
 
+        /// <summary>
+        /// Se produit lorsque l'on clique sur le bouton de supression d'une source
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnRemoveSource_Click(object sender, EventArgs e)
         {
-
+            RemoveSource();
         }
+
     }
 }

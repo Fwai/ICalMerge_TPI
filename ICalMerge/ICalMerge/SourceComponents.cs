@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -26,12 +27,17 @@ namespace ICalMerge
         private TextBox tbSourcePath; // Permet à l'utilisateur de voir le chemin de son fichier et de le changer à la main 
         private Button btnBrowse; // Permet à l'utilisateur d'ouvrir une fenêtre lui permettant d'importer un fichier
         private Label lblEventResult; // Permet d'afficher le nombre d'événements que contient le fichier.
+        private OpenFileDialog opfdOpenFile; // Permet de recevoir un chemin de fichier
+
+        // Liste des contrôles servant à ajouter une source.
+        List<Control> listControls;
 
         // Encapsulation des variables 
         public Label LblSourceName { get => lblSourceName; set => lblSourceName = value; }
         public TextBox TbSourcePath { get => tbSourcePath; set => tbSourcePath = value; }
         public Button BtnBrowse { get => btnBrowse; set => btnBrowse = value; }
         public Label LblEventResult { get => lblEventResult; set => lblEventResult = value; }
+        public OpenFileDialog OpfdOpenFile { get => opfdOpenFile; set => opfdOpenFile = value; }
 
 
 
@@ -42,11 +48,14 @@ namespace ICalMerge
         /// <param name="location">Définit à quelle position les contrôles se trouveront. Exemple : la position 0 définit la pemière position. La position 9 signifie la dixième et dernière position.</param>
         /// <param name="pnlFusion">Définit la panel contenant les contrôles qui servent à la fusion. </param>
         /// <param name="mainForm">Définit le formulaire principal.</param>
-        public SourceComponents(Panel pnlContainer, sbyte location, Panel pnlFusion, Form mainForm)
+        public SourceComponents(Panel pnlContainer, sbyte location, Panel pnlFusion, Form mainForm, OpenFileDialog opfdOpenFile)
         {
+            this.opfdOpenFile = opfdOpenFile;
             // On ajoute un espacement seulement pour les sources additionnelles. Les deux premières sources ont déjà une place suffisante.
             if (location>=2)
             {
+                // On redimensionne le formulaire contenant les SourceComponents, le formulaire principal et le panel servant à la fusion.
+                // Cela permet de faire la place nécessaire à l'ajout d'une source.
                 pnlContainer.Size = new System.Drawing.Size(pnlContainer.Size.Width, pnlContainer.Size.Height + 30);
                 pnlFusion.Location = new System.Drawing.Point(pnlFusion.Location.X, pnlFusion.Location.Y+ 30);
                 mainForm.Size = new System.Drawing.Size(mainForm.Size.Width, mainForm.Size.Height+30);
@@ -61,7 +70,7 @@ namespace ICalMerge
         /// Permet d'afficher tous les contrôles nécessaires à la récupération d'un fichier source.
         /// </summary>
         /// <param name="pnlContainer">Panel qui va contenir les contrôles</param>
-        /// <param name="location"></param>
+        /// <param name="location">numéro de la position</param>
         private void ShowSourceControls(Panel pnlContainer, sbyte location)
         {
             // Affiche le premier label Ex : "Source 4"
@@ -76,6 +85,8 @@ namespace ICalMerge
             TbSourcePath = new TextBox(); // On initialise le textBox
             TbSourcePath.Location = new System.Drawing.Point(82, 1 + location * SPACE_BETWEEN_CONTROLS_LINES);
             TbSourcePath.Size = new System.Drawing.Size(457, 20);
+            TbSourcePath.MouseDoubleClick += ClickOpenFile; // On ajoute la méthode qui permettra de choisir un fichier via un OpenFiledialog
+
 
             // Ajout du bouton de recherche de fichier
             BtnBrowse = new Button();
@@ -83,6 +94,7 @@ namespace ICalMerge
             BtnBrowse.Size = new System.Drawing.Size(75, 23);
             BtnBrowse.Text = EXPLORER_BUTTON_TEXT;
             BtnBrowse.UseVisualStyleBackColor = true;
+            BtnBrowse.MouseClick += ClickOpenFile; // On ajoute la méthode qui permettra de choisir un fichier via un OpenFiledialog
 
             // Ajout du label permettant d'afficher le nombre d'événements
             LblEventResult = new Label();
@@ -97,6 +109,15 @@ namespace ICalMerge
             pnlContainer.Controls.Add(TbSourcePath);
             pnlContainer.Controls.Add(BtnBrowse);
             pnlContainer.Controls.Add(LblEventResult);
+
+            listControls = new List<Control>();
+            // On regroupe les contrôles dans une liste
+            listControls.Add(LblSourceName);
+            listControls.Add(tbSourcePath);
+            listControls.Add(btnBrowse);
+            listControls.Add(lblEventResult);
+
+ 
         }
 
         /// <summary>
@@ -111,7 +132,33 @@ namespace ICalMerge
             pnlFusion.Location = new System.Drawing.Point(pnlFusion.Location.X, pnlFusion.Location.Y - 30);
             mainForm.Size = new System.Drawing.Size(mainForm.Size.Width, mainForm.Size.Height - 30);
 
-            LblSourceName = null;
+
+            foreach(Control control in listControls)
+            {
+                control.Hide();
+            }
+        }
+
+        /// <summary>
+        /// Permet 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClickOpenFile(object sender, MouseEventArgs e)
+        {
+            // Remise à zéro du FileName
+            opfdOpenFile.FileName = "";
+
+            // Affiche la fenêtre de l'OpenFileDialog
+            opfdOpenFile.ShowDialog();
+
+            // Vérifie que l'extension soit bien ".ics"
+            if (opfdOpenFile.FileName == "")
+            {
+                if()
+            }
+
+            TbSourcePath.Text = opfdOpenFile.FileName;
         }
     }
 }

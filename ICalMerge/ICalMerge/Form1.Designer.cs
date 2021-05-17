@@ -30,19 +30,20 @@
         {
             this.btnAddSource = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblAide = new System.Windows.Forms.Label();
             this.btnRemoveSource = new System.Windows.Forms.Button();
             this.pnlSources = new System.Windows.Forms.Panel();
             this.pnlFusion = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblFusion = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnFusion = new System.Windows.Forms.Button();
-            this.lblAide = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.opfdOpenFile = new System.Windows.Forms.OpenFileDialog();
             this.panel2.SuspendLayout();
             this.pnlFusion.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAddSource
@@ -65,6 +66,15 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(769, 65);
             this.panel2.TabIndex = 8;
+            // 
+            // lblAide
+            // 
+            this.lblAide.AutoSize = true;
+            this.lblAide.Location = new System.Drawing.Point(729, 12);
+            this.lblAide.Name = "lblAide";
+            this.lblAide.Size = new System.Drawing.Size(28, 13);
+            this.lblAide.TabIndex = 8;
+            this.lblAide.Text = "Aide";
             // 
             // btnRemoveSource
             // 
@@ -95,6 +105,15 @@
             this.pnlFusion.Size = new System.Drawing.Size(743, 126);
             this.pnlFusion.TabIndex = 8;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.pictureBox2.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(743, 2);
+            this.pictureBox2.TabIndex = 10;
+            this.pictureBox2.TabStop = false;
+            // 
             // lblFusion
             // 
             this.lblFusion.AutoSize = true;
@@ -122,15 +141,6 @@
             this.btnFusion.Text = "Fusionner";
             this.btnFusion.UseVisualStyleBackColor = true;
             // 
-            // lblAide
-            // 
-            this.lblAide.AutoSize = true;
-            this.lblAide.Location = new System.Drawing.Point(729, 12);
-            this.lblAide.Name = "lblAide";
-            this.lblAide.Size = new System.Drawing.Size(28, 13);
-            this.lblAide.TabIndex = 8;
-            this.lblAide.Text = "Aide";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.AppWorkspace;
@@ -140,14 +150,9 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // pictureBox2
+            // opfdOpenFile
             // 
-            this.pictureBox2.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.pictureBox2.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(743, 2);
-            this.pictureBox2.TabIndex = 10;
-            this.pictureBox2.TabStop = false;
+            this.opfdOpenFile.FileName = "openFileDialog1";
             // 
             // formIcal
             // 
@@ -165,8 +170,8 @@
             this.panel2.PerformLayout();
             this.pnlFusion.ResumeLayout(false);
             this.pnlFusion.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -183,6 +188,7 @@
         private System.Windows.Forms.Label lblAide;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.OpenFileDialog opfdOpenFile;
     }
 }
 
