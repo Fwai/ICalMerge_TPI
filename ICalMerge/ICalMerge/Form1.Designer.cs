@@ -39,7 +39,8 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnFusion = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.opfdOpenFile = new System.Windows.Forms.OpenFileDialog();
+            this.opfdChooseFile = new System.Windows.Forms.OpenFileDialog();
+            this.fbdChooseFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.panel2.SuspendLayout();
             this.pnlFusion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -140,6 +141,7 @@
             this.btnFusion.TabIndex = 0;
             this.btnFusion.Text = "Fusionner";
             this.btnFusion.UseVisualStyleBackColor = true;
+            this.btnFusion.Click += new System.EventHandler(this.BtnFusion_Click);
             // 
             // pictureBox1
             // 
@@ -150,9 +152,10 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // opfdOpenFile
+            // opfdChooseFile
             // 
-            this.opfdOpenFile.FileName = "openFileDialog1";
+            this.opfdChooseFile.FileName = "openFileDialog1";
+            this.opfdChooseFile.Filter = "Calendrier|*.ics";
             // 
             // formIcal
             // 
@@ -188,7 +191,8 @@
         private System.Windows.Forms.Label lblAide;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.OpenFileDialog opfdOpenFile;
+        private System.Windows.Forms.OpenFileDialog opfdChooseFile;
+        private System.Windows.Forms.FolderBrowserDialog fbdChooseFolder;
     }
 }
 

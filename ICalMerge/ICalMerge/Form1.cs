@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.IO;
 
 namespace ICalMerge
 {
@@ -40,7 +40,7 @@ namespace ICalMerge
             else
             {
                 // Création d'une nouvelle source
-                SourceComponents newSource = new SourceComponents(pnlSources, Convert.ToSByte(listSources.Count()),pnlFusion,this,opfdOpenFile);
+                SourceComponents newSource = new SourceComponents(pnlSources, Convert.ToSByte(listSources.Count()), pnlFusion, this, opfdChooseFile);
                 listSources.Add(newSource);
             }
 
@@ -60,11 +60,16 @@ namespace ICalMerge
             {
                 listSources[listSources.Count - 1].Destruct(pnlSources, pnlFusion, this);
                 listSources[listSources.Count - 1] = null;
-                listSources.RemoveAt(listSources.Count-1);
+                listSources.RemoveAt(listSources.Count - 1);
             }
 
         }
 
+        /// <summary>
+        /// Se produit quand l'utilisateur clique sur le bouton d'ajout. permet d'appeler la méthode d'ajout de source
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnAddSource_Click(object sender, EventArgs e)
         {
             AddSource();
@@ -80,5 +85,71 @@ namespace ICalMerge
             RemoveSource();
         }
 
+        private void BtnFusion_Click(object sender, EventArgs e)
+        {
+            MergeICSFiles();
+        }
+
+        private void MergeICSFiles()
+        {
+            // On vérifie si tous les fichiers sont valides
+            foreach (SourceComponents calendar in listSources)
+            {
+                // Vérifie que le fichier concerné est valide
+                if(calendar.IsFileValidated == false)
+                {
+                    MessageBox.Show("Un ou plusieurs fichiers ne sont pas valides. Veuillez vérifier les sources KO.");
+                    return; // Si le fichier n'est pas valide, on arrête la méthode
+                }
+            }
+
+            // Contienndra tous les événements de touts les calendriers.
+            List<string> allMergedLines = new List<string>();
+
+
+            // Définit si la ligne traitée appartient à un événement
+            bool copyingEvent = false;
+
+            // Parcourt tous les SourceComponents
+            foreach (SourceComponents calendar in listSources)
+            {
+                // Parcourt les données des sources components
+                foreach (string line in calendar.AllLines)
+                {
+                    if (line.Split(':')[0] == "BEGIN" && line.Split(':')[1] == "VEVENT")
+                    {
+                        copyingEvent = true; // Définit que le programme doit copier les prochaine slignes non reconnues. Car elles appartiendront forcéement à un événement
+
+                        // On ajoute la ligne à la liste de données à copier
+                        allMergedLines.Add(line);
+                    }
+                    else if (line.Split(':')[0] == "END" && line.Split(':')[1] == "VEVENT")
+                    {
+                        copyingEvent = false;
+
+                        // On ajoute la ligne à la liste de données à copier
+                        allMergedLines.Add(line);
+                    }
+                    else
+                    {
+                        // Vérifie 
+                        if (copyingEvent == true)
+                        {
+                            // On ajoute la ligne à la liste de données à copier
+                            allMergedLines.Add(line);
+                        }
+                    }
+                }
+            }
+
+            TextWriter tw = new StreamWriter(fbdChooseFolder.RootFolder + "SavedList.txt");
+
+            foreach (String s in allMergedLines)
+                tw.WriteLine(s);
+
+            tw.Close();
+
+
+        }
     }
 }
