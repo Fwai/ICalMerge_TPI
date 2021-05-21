@@ -39,6 +39,11 @@ namespace ICalMerge
         const string VALID_FILE_CALENDAR_SINGLE = " événement";
         const string VALID_FILE_CALENDAR_MULTIPLE = " événements";
 
+        // Propriété fichier ical
+        const string EVENT_PROPERTY_VEVENT = "VEVENT";
+        const string EVENT_PROPERTY_BEGIN = "BEGIN";
+        const string FILE_EXTENSION_NAME = "ics";
+
 
         // Ce sont tous les contrôles qui vont être affichés visuellement à l'utilisateur.
         private Label lblSourceName; // Permet d'afficher le titre et le numéro de la source. Exemple "Source 2"
@@ -121,7 +126,8 @@ namespace ICalMerge
             tbSourcePath.DragOver += AllowDrop; // On ajoute la méthode permettant d'autoriser le glisser déposer.
             TbSourcePath.DragDrop += DropFileOver; // Permet de déposer un fichier sur le contrôle;
             tbSourcePath.TextChanged += TextBoxTextChanged; // Vérifie l'intégrité du fichier entré à chaque modification de texte.
-            TbSourcePath.MouseDoubleClick += ClickOpenFile; // On ajoute la méthode qui permettra de choisir un fichier via un OpenFiledialog
+            // On ajoute la méthode qui permettra de choisir un fichier via un OpenFiledialog
+            TbSourcePath.MouseDoubleClick += ClickOpenFile; 
 
             // Ajout du bouton de recherche de fichier
             BtnBrowse = new Button();
@@ -178,7 +184,8 @@ namespace ICalMerge
         /// Permet d'ouvrir une boîte de dialogue qui permettra à l'utilisateur de choisir un fichier.
         /// </summary>
         /// <param name="sender">Contrôle qui appelle la méthode</param>
-        /// <param name="e">Détermine le type de méthode. Permet de donner les informations  sur la manière dont l'utilisateur utilise la souris</param>
+        /// <param name="e">Détermine le type de méthode. Permet de donner les informations
+        /// sur la manière dont l'utilisateur utilise la souris</param>
         private void ClickOpenFile(object sender, MouseEventArgs e)
         {
             // Vérifie que l'utilisateur aie importé un fichier
@@ -247,18 +254,21 @@ namespace ICalMerge
         /// - La validité du contenu du fichier
         /// - Le nombre d'événement que contient le fichier
         /// </summary>
-        private void VerifyFileIntegrity()
+        public void VerifyFileIntegrity()
         {
+            // Remise à zéro du nombre d'événements
+            EventsNumber = 0;
+
             //Vérifie que le chemin du fichier est valide
             if (File.Exists(tbSourcePath.Text))
             {
-                if (tbSourcePath.Text.Split('.')[tbSourcePath.Text.Split('.').Length - 1] == "ics")
+                if (tbSourcePath.Text.Split('.')[tbSourcePath.Text.Split('.').Length - 1] == FILE_EXTENSION_NAME)
                 {
                     AllLines = File.ReadAllLines(tbSourcePath.Text);
 
                     foreach (string line in AllLines)
                     {
-                        if (line.Split(':')[0] == "BEGIN" && line.Split(':')[1] == "VEVENT")
+                        if (line.Split(':')[0] == EVENT_PROPERTY_BEGIN && line.Split(':')[1] == EVENT_PROPERTY_VEVENT)
                         {
                             EventsNumber++;
                         }

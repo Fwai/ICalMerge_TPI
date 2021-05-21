@@ -36,11 +36,11 @@
             this.pnlFusion = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblFusion = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.pbLoadMerge = new System.Windows.Forms.ProgressBar();
             this.btnFusion = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.opfdChooseFile = new System.Windows.Forms.OpenFileDialog();
-            this.fbdChooseFolder = new System.Windows.Forms.FolderBrowserDialog();
+            this.sfdSaveMergedCalendar = new System.Windows.Forms.SaveFileDialog();
             this.panel2.SuspendLayout();
             this.pnlFusion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -99,7 +99,7 @@
             // 
             this.pnlFusion.Controls.Add(this.pictureBox2);
             this.pnlFusion.Controls.Add(this.lblFusion);
-            this.pnlFusion.Controls.Add(this.progressBar1);
+            this.pnlFusion.Controls.Add(this.pbLoadMerge);
             this.pnlFusion.Controls.Add(this.btnFusion);
             this.pnlFusion.Location = new System.Drawing.Point(12, 160);
             this.pnlFusion.Name = "pnlFusion";
@@ -121,16 +121,15 @@
             this.lblFusion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFusion.Location = new System.Drawing.Point(230, 92);
             this.lblFusion.Name = "lblFusion";
-            this.lblFusion.Size = new System.Drawing.Size(276, 16);
+            this.lblFusion.Size = new System.Drawing.Size(0, 16);
             this.lblFusion.TabIndex = 2;
-            this.lblFusion.Text = "Fusion terminée avec succès : X événements";
             // 
-            // progressBar1
+            // pbLoadMerge
             // 
-            this.progressBar1.Location = new System.Drawing.Point(215, 66);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(310, 23);
-            this.progressBar1.TabIndex = 1;
+            this.pbLoadMerge.Location = new System.Drawing.Point(215, 66);
+            this.pbLoadMerge.Name = "pbLoadMerge";
+            this.pbLoadMerge.Size = new System.Drawing.Size(310, 23);
+            this.pbLoadMerge.TabIndex = 1;
             // 
             // btnFusion
             // 
@@ -155,7 +154,12 @@
             // opfdChooseFile
             // 
             this.opfdChooseFile.FileName = "openFileDialog1";
-            this.opfdChooseFile.Filter = "Calendrier|*.ics";
+            this.opfdChooseFile.Filter = "Calendrier|*.ics|Tous les fichiers|*.*";
+            // 
+            // sfdSaveMergedCalendar
+            // 
+            this.sfdSaveMergedCalendar.DefaultExt = "ics";
+            this.sfdSaveMergedCalendar.Filter = "Calendrier|*.ics";
             // 
             // formIcal
             // 
@@ -185,14 +189,14 @@
         private System.Windows.Forms.Panel pnlSources;
         private System.Windows.Forms.Panel pnlFusion;
         private System.Windows.Forms.Label lblFusion;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar pbLoadMerge;
         private System.Windows.Forms.Button btnFusion;
         private System.Windows.Forms.Button btnRemoveSource;
         private System.Windows.Forms.Label lblAide;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.OpenFileDialog opfdChooseFile;
-        private System.Windows.Forms.FolderBrowserDialog fbdChooseFolder;
+        private System.Windows.Forms.SaveFileDialog sfdSaveMergedCalendar;
     }
 }
 
