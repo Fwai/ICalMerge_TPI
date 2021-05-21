@@ -18,3 +18,4 @@ C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\o
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Debug\ICalMerge.csproj.CoreCompileInputs.cache
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Debug\ICalMerge.exe
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Debug\ICalMerge.pdb
+C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Debug\ICalMerge.formHelp.resources
