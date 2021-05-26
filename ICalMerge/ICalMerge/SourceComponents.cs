@@ -31,7 +31,6 @@ namespace ICalMerge
 
         // Texte à afficher si le fichier importé invalide
         const string INVALID_FILE_PATH = "KO: Chemin invalide"; // Chemin invalide
-        const string INVALID_FILE_EXTENSION = "KO: Extension invalide"; // Chemin invalide
         const string INVALID_FILE_CONTENT = "KO: 0 événement";
 
         //Texte à afficher si le fichier importé est valide
@@ -92,9 +91,9 @@ namespace ICalMerge
             {
                 // On redimensionne le formulaire contenant les SourceComponents, le formulaire principal et le panel servant à la fusion.
                 // Cela permet de faire la place nécessaire à l'ajout d'une source.
-                pnlContainer.Size = new System.Drawing.Size(pnlContainer.Size.Width, pnlContainer.Size.Height + 30);
-                pnlFusion.Location = new System.Drawing.Point(pnlFusion.Location.X, pnlFusion.Location.Y + 30);
-                mainForm.Size = new System.Drawing.Size(mainForm.Size.Width, mainForm.Size.Height + 30);
+                pnlContainer.Size = new System.Drawing.Size(pnlContainer.Size.Width, pnlContainer.Size.Height + SPACE_BETWEEN_CONTROLS_LINES);
+                pnlFusion.Location = new System.Drawing.Point(pnlFusion.Location.X, pnlFusion.Location.Y + SPACE_BETWEEN_CONTROLS_LINES);
+                mainForm.Size = new System.Drawing.Size(mainForm.Size.Width, mainForm.Size.Height + SPACE_BETWEEN_CONTROLS_LINES);
             }
 
             // Affichage des contrôles
@@ -112,14 +111,14 @@ namespace ICalMerge
             // Affiche le premier label Ex : "Source 4"
             LblSourceName = new Label(); // On initialise le label
             LblSourceName.Font = new System.Drawing.Font(SOURCE_LABEL_FONT, 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            LblSourceName.Location = new System.Drawing.Point(0, location * SPACE_BETWEEN_CONTROLS_LINES);
+            LblSourceName.Location = new System.Drawing.Point(0, location * SPACE_BETWEEN_CONTROLS_LINES + 1);
             LblSourceName.Size = new System.Drawing.Size(68, 18);
             LblSourceName.Text = SOURCE_TEXT + Convert.ToString(location + 1);
             lblSourceName.AutoSize = true;
 
             // Ajout d'un textBox
             TbSourcePath = new TextBox(); // On initialise le textBox
-            TbSourcePath.Location = new System.Drawing.Point(82, 1 + location * SPACE_BETWEEN_CONTROLS_LINES);
+            TbSourcePath.Location = new System.Drawing.Point(82, 1 + location * SPACE_BETWEEN_CONTROLS_LINES + 1);
             TbSourcePath.Size = new System.Drawing.Size(457, 20);
             TbSourcePath.BackColor = System.Drawing.SystemColors.Window;
             tbSourcePath.AllowDrop = true; // Fait en sorte que le contrôle accepte de "glisser déposer"
@@ -127,7 +126,7 @@ namespace ICalMerge
             TbSourcePath.DragDrop += DropFileOver; // Permet de déposer un fichier sur le contrôle;
             tbSourcePath.TextChanged += TextBoxTextChanged; // Vérifie l'intégrité du fichier entré à chaque modification de texte.
             // On ajoute la méthode qui permettra de choisir un fichier via un OpenFiledialog
-            TbSourcePath.MouseDoubleClick += ClickOpenFile; 
+            TbSourcePath.MouseDoubleClick += ClickOpenFile;
 
             // Ajout du bouton de recherche de fichier
             BtnBrowse = new Button();
@@ -262,40 +261,33 @@ namespace ICalMerge
             //Vérifie que le chemin du fichier est valide
             if (File.Exists(tbSourcePath.Text))
             {
-                if (tbSourcePath.Text.Split('.')[tbSourcePath.Text.Split('.').Length - 1] == FILE_EXTENSION_NAME)
+
+                AllLines = File.ReadAllLines(tbSourcePath.Text);
+
+                foreach (string line in AllLines)
                 {
-                    AllLines = File.ReadAllLines(tbSourcePath.Text);
-
-                    foreach (string line in AllLines)
+                    if (line.Split(':')[0] == EVENT_PROPERTY_BEGIN && line.Split(':')[1] == EVENT_PROPERTY_VEVENT)
                     {
-                        if (line.Split(':')[0] == EVENT_PROPERTY_BEGIN && line.Split(':')[1] == EVENT_PROPERTY_VEVENT)
-                        {
-                            EventsNumber++;
-                        }
-                    }
-                    switch (EventsNumber)
-                    {
-                        case 0:
-                            // Comme le fichier ne contient aucun événements, c'est un KO et on l'affiche à l'utilisateur
-                            lblEventResult.Text = INVALID_FILE_CONTENT;
-                            isFileValidated = false; // On s'assure que le fichier soit considéré comme invalide.
-                            break;
-
-                        case 1:
-                            lblEventResult.Text = VALID_FILE_CALENDAR_OK + Convert.ToString(EventsNumber) + VALID_FILE_CALENDAR_SINGLE;
-                            isFileValidated = true; // On définit le fichier comme valide
-                            break;
-
-                        default:
-                            lblEventResult.Text = VALID_FILE_CALENDAR_OK + Convert.ToString(EventsNumber) + VALID_FILE_CALENDAR_MULTIPLE;
-                            isFileValidated = true;// On définit le fichier comme valide
-                            break;
+                        EventsNumber++;
                     }
                 }
-                else
+                switch (EventsNumber)
                 {
-                    // Comme le fichier n'a pas la bonne extension, c'est un KO et on l'affiche à l'utilisateur
-                    lblEventResult.Text = INVALID_FILE_EXTENSION;
+                    case 0:
+                        // Comme le fichier ne contient aucun événements, c'est un KO et on l'affiche à l'utilisateur
+                        lblEventResult.Text = INVALID_FILE_CONTENT;
+                        isFileValidated = false; // On s'assure que le fichier soit considéré comme invalide.
+                        break;
+
+                    case 1:
+                        lblEventResult.Text = VALID_FILE_CALENDAR_OK + Convert.ToString(EventsNumber) + VALID_FILE_CALENDAR_SINGLE;
+                        isFileValidated = true; // On définit le fichier comme valide
+                        break;
+
+                    default:
+                        lblEventResult.Text = VALID_FILE_CALENDAR_OK + Convert.ToString(EventsNumber) + VALID_FILE_CALENDAR_MULTIPLE;
+                        isFileValidated = true;// On définit le fichier comme valide
+                        break;
                 }
             }
             else

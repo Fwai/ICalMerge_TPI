@@ -76,6 +76,7 @@
             this.lblAide.Size = new System.Drawing.Size(28, 13);
             this.lblAide.TabIndex = 8;
             this.lblAide.Text = "Aide";
+            this.lblAide.Click += new System.EventHandler(this.LblAide_Click);
             // 
             // btnRemoveSource
             // 

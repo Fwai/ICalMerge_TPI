@@ -25,6 +25,10 @@ namespace ICalMerge
         const string ERROR_MINIMUM_FILES = "Le programme nécessite deux sources au minimum";
         const string ERROR_INVALID_FILES = "Un ou plusieurs fichiers ne sont pas valides. Veuillez vérifier les sources KO.";
         const string ERROR_UNMATCHED_EVENT_NUMBER = "Le nombre d'événements fusionnés ne correspond pas au nombre d'événements à fusionner.";
+
+        // Formulaire d'aide
+        FormHelp fhFormHelp;
+
         /* Définit une liste de sources. Les sources ont des composants visuels
            ainsi que des valeurs pouvant stocker le chemin d'une source définie par l'utilisateur. */
         List<SourceComponents> listSources;
@@ -41,6 +45,9 @@ namespace ICalMerge
             // Nous ajoutons deux champs source.
             AddSource();
             AddSource();
+
+            // On créer un nouveau formulaire d'aide
+            fhFormHelp = new FormHelp();
         }
 
         /// <summary>
@@ -189,7 +196,7 @@ namespace ICalMerge
             }
 
             // vérifie que le nombre d'événement traité correspond au nombre d'événements à traiter
-            if (pbLoadMerge.Value== pbLoadMerge.Maximum)
+            if (pbLoadMerge.Value == pbLoadMerge.Maximum)
             {
                 // On ouvre la fenêtre d'importation et l'on vérifie que l'utilisateur aie correctement entré un emplacement et un nom de fichier.
                 if (sfdSaveMergedCalendar.ShowDialog() == DialogResult.OK)
@@ -212,7 +219,22 @@ namespace ICalMerge
                 // Si le nombre d'événements total à fusionner ne correspond pas au nombre d'événements ayant été fusionnés.
                 MessageBox.Show(ERROR_UNMATCHED_EVENT_NUMBER);
             }
-            
+
+        }
+
+        /// <summary>
+        /// Permet d'ouvrir une page d'aide.
+        /// </summary>
+        public void OpenformHelp()
+        {
+            fhFormHelp.Close();
+            fhFormHelp = new FormHelp();
+            fhFormHelp.Show();
+        }
+
+        private void LblAide_Click(object sender, EventArgs e)
+        {
+            OpenformHelp();
         }
     }
 }

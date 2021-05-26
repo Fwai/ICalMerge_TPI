@@ -1,20 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ICalMerge
 {
-    public partial class formHelp : Form
+    public partial class FormHelp : Form
     {
-        public formHelp()
+        public FormHelp()
         {
             InitializeComponent();
+            SourceComponents scExample = new SourceComponents(pnlSource, 0, pnlSource, this, ofdExample);
+        }
+
+        private void BtnCloseHelp_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }
