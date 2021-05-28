@@ -250,7 +250,7 @@
             this.ofdExample.FileName = "openFileDialog1";
             this.ofdExample.Filter = "Calendrier|*.ics|Tous les fichiers|*.*";
             // 
-            // FormHelp
+            // IFormHelp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -277,7 +277,7 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(816, 921);
             this.MinimumSize = new System.Drawing.Size(816, 921);
-            this.Name = "FormHelp";
+            this.Name = "IFormHelp";
             this.ShowIcon = false;
             this.Text = "Aide";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
