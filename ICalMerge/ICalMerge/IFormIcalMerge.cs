@@ -151,7 +151,6 @@ namespace ICalMerge
                 pbLoadMerge.Maximum += calendar.EventsNumber;
             }
 
-            MergerObject.FuseContent(pbLoadMerge, listSources, sfdSaveMergedCalendar, lblFusion);
 
             // vérifie que le nombre d'événement traité correspond au nombre d'événements à traiter
             if (pbLoadMerge.Value == pbLoadMerge.Maximum)
@@ -163,8 +162,8 @@ namespace ICalMerge
                     lblFusion.Text = END_FUSED_FILE_MESSAGE1 + Convert.ToString(pbLoadMerge.Value) + END_FUSED_FILE_MESSAGE2;
 
                     // On exporte les données dans à l'endroit choisi par l'utilisateur. Le nom de fichier est inclut dans le chemin.
-                    // l'Objet MERGER est utilisé pour la fusion des données.
-                    File.WriteAllText(sfdSaveMergedCalendar.FileName, MergerObject.StrAllMergedLines);
+                    
+                    File.WriteAllText(sfdSaveMergedCalendar.FileName, MergerObject.FuseContent(pbLoadMerge, listSources, sfdSaveMergedCalendar, lblFusion));
 
                     // On recharge tous les fichiers. Si un utilisateur a importé les calendriers dans un fichier source, il sera actualisé.
                     foreach (SourceComponents calendar in listSources)

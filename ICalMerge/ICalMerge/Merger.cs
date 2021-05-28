@@ -26,13 +26,21 @@ namespace ICalMerge
         // Contiendra tous les événements de touts les calendriers. Les premières lignes servent à définir le début du calendrier
         private string strAllMergedLines;
 
+        // Définit le formulaire principal qui utilise cette classe
+        IFormIcalMerge mainForm;
+
         // Encapsulation
         public string StrAllMergedLines { get => strAllMergedLines; set => strAllMergedLines = value; }
+
+        public Merger(IFormIcalMerge mainForm)
+        {
+            this.mainForm = mainForm;
+        }
 
         /// <summary>
         /// Permet de fusionner tous le contenu des fichiers entrés en un string.
         /// </summary>
-        public void FuseContent(ProgressBar pbLoadMerge, List<SourceComponents> listSources, SaveFileDialog sfdSaveMergedCalendar, Label lblFusion)
+        public void FuseContent(List<SourceComponents> listSources)
         {
             // On vide les données fusionnées pour la nouvelle fusion
             strAllMergedLines = "";
@@ -63,8 +71,8 @@ namespace ICalMerge
                         // On ajoute la ligne à la chaîne de données à copier
                         StrAllMergedLines += line + BACKSLASH_N;
 
-                        // Incrémentation de la valeur de la barre de progression.
-                        pbLoadMerge.Value += 1;
+                        // On dit à l'interface d'incrémenter la barre de progression
+                        mainForm.AddValueProgressBar();
                     }
                     else
                     {
@@ -81,7 +89,5 @@ namespace ICalMerge
             // On ajoute la donnée qui définit la fin d'un calendrier.
             StrAllMergedLines += END_VCALENDAR;
         }
-
-
     }
 }
