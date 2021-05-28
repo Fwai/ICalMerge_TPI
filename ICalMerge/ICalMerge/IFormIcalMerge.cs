@@ -149,11 +149,17 @@ namespace ICalMerge
             // Définition du maximum de la barre de progression. Correspond au nombre d'événement total à ajouter
             foreach (SourceComponents calendar in listSources)
             {
-                // On modifie le mximum 
+                // On modifie le maximum 
                 pbLoadMerge.Maximum += calendar.EventsNumber;
             }
 
-            MergerObject.FuseContent(listSources);
+            MergerObject.ResetContentToFuse();
+
+            // Parcourt tous les SourceComponents
+            foreach (SourceComponents calendar in listSources)
+            {
+                MergerObject.AddContentToFuse(calendar.AllLines);
+            }
 
             // vérifie que le nombre d'événement traité correspond au nombre d'événements à traiter
             if (pbLoadMerge.Value == pbLoadMerge.Maximum)
@@ -165,7 +171,7 @@ namespace ICalMerge
                     lblFusion.Text = END_FUSED_FILE_MESSAGE1 + Convert.ToString(pbLoadMerge.Value) + END_FUSED_FILE_MESSAGE2;
 
                     // On exporte les données dans à l'endroit choisi par l'utilisateur. Le nom de fichier est inclut dans le chemin.
-                    
+
                     File.WriteAllText(sfdSaveMergedCalendar.FileName, MergerObject.StrAllMergedLines);
 
                     // On recharge tous les fichiers. Si un utilisateur a importé les calendriers dans un fichier source, il sera actualisé.
@@ -180,6 +186,8 @@ namespace ICalMerge
                 // Si le nombre d'événements total à fusionner ne correspond pas au nombre d'événements ayant été fusionnés.
                 MessageBox.Show(ERROR_UNMATCHED_EVENT_NUMBER);
             }
+
+            MergerObject.FinishCalendar();
         }
 
         // Permet d'ouvrir le formulaire d'aide lorsque l'utilisateur clique sur le label "Aide".
@@ -196,7 +204,7 @@ namespace ICalMerge
         /// <param name="e"></param>
         private void KeyboardKeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyData == Keys.F1)
+            if (e.KeyData == Keys.F1)
             {
                 OpenformHelp();
             }
@@ -210,7 +218,7 @@ namespace ICalMerge
             FhFormHelp.Close();
             FhFormHelp = new IFormHelp();
             FhFormHelp.Show();
-        } 
+        }
 
         public void AddValueProgressBar()
         {

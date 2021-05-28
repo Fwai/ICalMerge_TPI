@@ -9,7 +9,7 @@ namespace ICalMerge
     /// <summary>
     /// Cette classe permet de recevoir toutes les informations concernant les fich
     /// </summary>
-    class SourceComponents
+    public class SourceComponents
     {
         // Définit l'espace entre vertical entre chaque ligne de contrôles de sources. Un contrôle est un élément visuel.
         const sbyte SPACE_BETWEEN_CONTROLS_LINES = 30;

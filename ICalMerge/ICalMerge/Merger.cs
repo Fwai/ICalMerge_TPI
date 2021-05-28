@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace ICalMerge
+﻿namespace ICalMerge
 {
     /// <summary>
     /// Cette classe permet de s'occuper de toute la partie concernant la fusion de fichier
     /// </summary>
-    class Merger
+    public class Merger
     {
         // Variables constantes
         const string BACKSLASH_N = "\n";
@@ -49,63 +41,68 @@ namespace ICalMerge
             this.mainForm = mainForm;
         }
 
+        /// <summary>
+        /// Permet de vider les données
+        /// </summary>
+        public void ResetContentToFuse()
+        {
+            // On vide les données fusionnées pour la nouvelle fusion
+            strAllMergedLines = BEGIN_FUSED_CALENDAR;
+        }
 
         /// <summary>
         /// Permet de fusionner tous le contenu des fichiers entrés en un string.
         /// </summary>
         /// <param name="listSources">Contient la liste de tous les SourceComponents</param>
         /// <param name="boolAllowProgressBar">Permet de déinfir si l'on veut incrémenter la barre de progression ou pas. True= oui, False = non</param>
-        public void FuseContent(List<SourceComponents> listSources)
+        public void AddContentToFuse(string[] allLines)
         {
-            // On vide les données fusionnées pour la nouvelle fusion
-            strAllMergedLines = "";
-            strAllMergedLines += BEGIN_FUSED_CALENDAR;
-
             // Définit si la ligne traitée appartient à un événement
             bool boolIsCopyingEvent = false;
 
-            // Parcourt tous les SourceComponents
-            foreach (SourceComponents calendar in listSources)
+
+            // Parcourt les données des sources components
+            foreach (string line in allLines)
             {
-                // Parcourt les données des sources components
-                foreach (string line in calendar.AllLines)
+                // Vérifie si la  ligne correspond au début d'un événement
+                if (line.Split(':')[0] == EVENT_PROPERTY_BEGIN && line.Split(':')[1] == EVENT_PROPERTY_VEVENT)
                 {
-                    // Vérifie si la  ligne correspond au début d'un événement
-                    if (line.Split(':')[0] == EVENT_PROPERTY_BEGIN && line.Split(':')[1] == EVENT_PROPERTY_VEVENT)
+                    boolIsCopyingEvent = true; // Définit que le programme doit copier les prochaine slignes non reconnues. Car elles appartiendront forcéement à un événement
+
+                    // On ajoute la ligne à la chaîne de données à copier
+                    StrAllMergedLines += line + BACKSLASH_N;
+
+                } // Vérifie si c'est la fin d'un événement
+                else if (line.Split(':')[0] == EVENT_PROPERTY_END && line.Split(':')[1] == EVENT_PROPERTY_VEVENT)
+                {
+                    boolIsCopyingEvent = false;
+
+                    // On ajoute la ligne à la chaîne de données à copier
+                    StrAllMergedLines += line + BACKSLASH_N;
+
+                    // Vérifie si un formulaire a été attribue, dans le cas contraire c'est un test unitaire qui utilise cette classe.
+                    if (mainForm != null)
                     {
-                        boolIsCopyingEvent = true; // Définit que le programme doit copier les prochaine slignes non reconnues. Car elles appartiendront forcéement à un événement
-
-                        // On ajoute la ligne à la chaîne de données à copier
-                        StrAllMergedLines += line + BACKSLASH_N;
-
-                    } // Vérifie si c'est la fin d'un événement
-                    else if (line.Split(':')[0] == EVENT_PROPERTY_END && line.Split(':')[1] == EVENT_PROPERTY_VEVENT)
-                    {
-                        boolIsCopyingEvent = false;
-
-                        // On ajoute la ligne à la chaîne de données à copier
-                        StrAllMergedLines += line + BACKSLASH_N;
-
-                        // Vérifie si un formulaire a été attribue, dans le cas contraire c'est un test unitaire qui utilise cette classe.
-                        if(mainForm != null)
-                        {
-                            // On dit à l'interface d'incrémenter la barre de progression
-                            mainForm.AddValueProgressBar();
-                        }
-
+                        // On dit à l'interface d'incrémenter la barre de progression
+                        mainForm.AddValueProgressBar();
                     }
-                    else
+
+                }
+                else
+                {
+                    // Vérifie 
+                    if (boolIsCopyingEvent == true)
                     {
-                        // Vérifie 
-                        if (boolIsCopyingEvent == true)
-                        {
-                            // On ajoute la ligne à la chaîne de données à copier
-                            StrAllMergedLines += line + BACKSLASH_N;
-                        }
+                        // On ajoute la ligne à la chaîne de données à copier
+                        StrAllMergedLines += line + BACKSLASH_N;
                     }
                 }
             }
 
+        }
+
+        public void FinishCalendar()
+        {
             // On ajoute la donnée qui définit la fin d'un calendrier.
             StrAllMergedLines += END_VCALENDAR;
         }
