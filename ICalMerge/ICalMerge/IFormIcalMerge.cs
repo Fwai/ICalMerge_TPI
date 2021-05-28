@@ -43,7 +43,9 @@ namespace ICalMerge
             AddSource();
 
             // On créer un nouveau Merger pour qu'il puisse gérer la fusion.
-            MergerObject = new Merger(this);
+            MergerObject = new Merger();
+            // On attribue ce formulaire au merger.
+            MergerObject.DefineMainForm(this);
 
             // On créer un nouveau formulaire d'aide
             FhFormHelp = new IFormHelp();

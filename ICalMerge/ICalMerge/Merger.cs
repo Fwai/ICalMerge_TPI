@@ -32,14 +32,29 @@ namespace ICalMerge
         // Encapsulation
         public string StrAllMergedLines { get => strAllMergedLines; set => strAllMergedLines = value; }
 
-        public Merger(IFormIcalMerge mainForm)
+        /// <summary>
+        /// Constructeur de la classe
+        /// </summary>
+        public Merger()
+        {
+            mainForm = null;
+        }
+
+        /// <summary>
+        /// Permet de définir le formulaire principal qui utilisera cette classe.
+        /// </summary>
+        /// <param name="mainForm"></param>
+        public void DefineMainForm(IFormIcalMerge mainForm)
         {
             this.mainForm = mainForm;
         }
 
+
         /// <summary>
         /// Permet de fusionner tous le contenu des fichiers entrés en un string.
         /// </summary>
+        /// <param name="listSources">Contient la liste de tous les SourceComponents</param>
+        /// <param name="boolAllowProgressBar">Permet de déinfir si l'on veut incrémenter la barre de progression ou pas. True= oui, False = non</param>
         public void FuseContent(List<SourceComponents> listSources)
         {
             // On vide les données fusionnées pour la nouvelle fusion
@@ -71,8 +86,13 @@ namespace ICalMerge
                         // On ajoute la ligne à la chaîne de données à copier
                         StrAllMergedLines += line + BACKSLASH_N;
 
-                        // On dit à l'interface d'incrémenter la barre de progression
-                        mainForm.AddValueProgressBar();
+                        // Vérifie si un formulaire a été attribue, dans le cas contraire c'est un test unitaire qui utilise cette classe.
+                        if(mainForm != null)
+                        {
+                            // On dit à l'interface d'incrémenter la barre de progression
+                            mainForm.AddValueProgressBar();
+                        }
+
                     }
                     else
                     {
