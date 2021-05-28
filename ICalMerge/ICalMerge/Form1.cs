@@ -19,6 +19,7 @@ namespace ICalMerge
         const string EVENT_PROPERTY_VEVENT = "VEVENT";
         const string EVENT_PROPERTY_BEGIN = "BEGIN";
         const string EVENT_PROPERTY_END = "END";
+        const string END_VCALENDAR = "END:VCALENDAR";   
 
         // Messages d'erreur
         const string ERROR_MAX_CREATED_FILES = "La limite de fichiers source a été atteinte";
@@ -195,6 +196,9 @@ namespace ICalMerge
                 }
             }
 
+            // On ajoute la donnée qui définit la fin d'un calendrier.
+            strAllMergedLines += END_VCALENDAR;
+
             // vérifie que le nombre d'événement traité correspond au nombre d'événements à traiter
             if (pbLoadMerge.Value == pbLoadMerge.Maximum)
             {
@@ -222,6 +226,26 @@ namespace ICalMerge
 
         }
 
+        // Permet d'ouvrir le formulaire d'aide lorsque l'utilisateur clique sur le label "Aide".
+        private void LblAide_Click(object sender, EventArgs e)
+        {
+            OpenformHelp();
+        }
+
+        /// <summary>
+        /// S'active lorsque l'utilisateur clique sur son clavier. Cela vérifiera si il a cliqué sur F1.
+        /// Si c'est le cas, la page d'aide s'ouvre.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void KeyboardKeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyData == Keys.F1)
+            {
+                OpenformHelp();
+            }
+        }
+
         /// <summary>
         /// Permet d'ouvrir une page d'aide.
         /// </summary>
@@ -230,11 +254,6 @@ namespace ICalMerge
             fhFormHelp.Close();
             fhFormHelp = new FormHelp();
             fhFormHelp.Show();
-        }
-
-        private void LblAide_Click(object sender, EventArgs e)
-        {
-            OpenformHelp();
         }
     }
 }

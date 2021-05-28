@@ -171,9 +171,15 @@
             this.Controls.Add(this.pnlSources);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.pnlFusion);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(783, 334);
+            this.MinimumSize = new System.Drawing.Size(783, 334);
             this.Name = "formIcal";
             this.ShowIcon = false;
             this.Text = "IcalMerge";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyboardKeyDown);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.pnlFusion.ResumeLayout(false);

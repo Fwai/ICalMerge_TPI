@@ -93,6 +93,8 @@ namespace ICalMerge
                 // Cela permet de faire la place nécessaire à l'ajout d'une source.
                 pnlContainer.Size = new System.Drawing.Size(pnlContainer.Size.Width, pnlContainer.Size.Height + SPACE_BETWEEN_CONTROLS_LINES);
                 pnlFusion.Location = new System.Drawing.Point(pnlFusion.Location.X, pnlFusion.Location.Y + SPACE_BETWEEN_CONTROLS_LINES);
+                mainForm.MaximumSize = new System.Drawing.Size(mainForm.Size.Width, mainForm.Size.Height + SPACE_BETWEEN_CONTROLS_LINES);
+                mainForm.MinimumSize = new System.Drawing.Size(mainForm.Size.Width, mainForm.Size.Height + SPACE_BETWEEN_CONTROLS_LINES);
                 mainForm.Size = new System.Drawing.Size(mainForm.Size.Width, mainForm.Size.Height + SPACE_BETWEEN_CONTROLS_LINES);
             }
 
@@ -168,9 +170,11 @@ namespace ICalMerge
         /// <param name="mainForm">Formulaire principal</param>
         public void Destruct(Panel pnlContainer, Panel pnlFusion, Form mainForm)
         {
-            pnlContainer.Size = new System.Drawing.Size(pnlContainer.Size.Width, pnlContainer.Size.Height - 30);
-            pnlFusion.Location = new System.Drawing.Point(pnlFusion.Location.X, pnlFusion.Location.Y - 30);
-            mainForm.Size = new System.Drawing.Size(mainForm.Size.Width, mainForm.Size.Height - 30);
+            pnlContainer.Size = new System.Drawing.Size(pnlContainer.Size.Width, pnlContainer.Size.Height - SPACE_BETWEEN_CONTROLS_LINES);
+            pnlFusion.Location = new System.Drawing.Point(pnlFusion.Location.X, pnlFusion.Location.Y - SPACE_BETWEEN_CONTROLS_LINES);
+            mainForm.MinimumSize = new System.Drawing.Size(mainForm.Size.Width, mainForm.Size.Height - SPACE_BETWEEN_CONTROLS_LINES);
+            mainForm.MaximumSize = new System.Drawing.Size(mainForm.Size.Width, mainForm.Size.Height - SPACE_BETWEEN_CONTROLS_LINES);
+            mainForm.Size = new System.Drawing.Size(mainForm.Size.Width, mainForm.Size.Height - SPACE_BETWEEN_CONTROLS_LINES);
 
 
             foreach (Control control in listControls)

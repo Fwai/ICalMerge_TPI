@@ -248,6 +248,7 @@
             // ofdExample
             // 
             this.ofdExample.FileName = "openFileDialog1";
+            this.ofdExample.Filter = "Calendrier|*.ics|Tous les fichiers|*.*";
             // 
             // FormHelp
             // 
@@ -272,6 +273,10 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblIntro);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(816, 921);
+            this.MinimumSize = new System.Drawing.Size(816, 921);
             this.Name = "FormHelp";
             this.ShowIcon = false;
             this.Text = "Aide";
