@@ -43,7 +43,7 @@ namespace ICalMerge
             AddSource();
 
             // On créer un nouveau Merger pour qu'il puisse gérer la fusion.
-            MergerObject = new Merger();
+            MergerObject = new Merger(this);
 
             // On créer un nouveau formulaire d'aide
             FhFormHelp = new IFormHelp();
@@ -151,6 +151,7 @@ namespace ICalMerge
                 pbLoadMerge.Maximum += calendar.EventsNumber;
             }
 
+            MergerObject.FuseContent(listSources);
 
             // vérifie que le nombre d'événement traité correspond au nombre d'événements à traiter
             if (pbLoadMerge.Value == pbLoadMerge.Maximum)
@@ -163,7 +164,7 @@ namespace ICalMerge
 
                     // On exporte les données dans à l'endroit choisi par l'utilisateur. Le nom de fichier est inclut dans le chemin.
                     
-                    File.WriteAllText(sfdSaveMergedCalendar.FileName, MergerObject.FuseContent(pbLoadMerge, listSources, sfdSaveMergedCalendar, lblFusion));
+                    File.WriteAllText(sfdSaveMergedCalendar.FileName, MergerObject.StrAllMergedLines);
 
                     // On recharge tous les fichiers. Si un utilisateur a importé les calendriers dans un fichier source, il sera actualisé.
                     foreach (SourceComponents calendar in listSources)
@@ -207,6 +208,11 @@ namespace ICalMerge
             FhFormHelp.Close();
             FhFormHelp = new IFormHelp();
             FhFormHelp.Show();
+        } 
+
+        public void AddValueProgressBar()
+        {
+            pbLoadMerge.Value += 1;
         }
     }
 }
