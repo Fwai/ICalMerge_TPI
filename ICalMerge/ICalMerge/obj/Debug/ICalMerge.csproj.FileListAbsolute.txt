@@ -12,10 +12,10 @@ C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\b
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\bin\Debug\ICalMerge.exe
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\bin\Debug\ICalMerge.pdb
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Debug\ICalMerge.csprojAssemblyReference.cache
-C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Debug\ICalMerge.formIcal.resources
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Debug\ICalMerge.Properties.Resources.resources
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Debug\ICalMerge.csproj.GenerateResource.cache
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Debug\ICalMerge.csproj.CoreCompileInputs.cache
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Debug\ICalMerge.exe
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Debug\ICalMerge.pdb
-C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Debug\ICalMerge.formHelp.resources
+C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Debug\ICalMerge.IFormIcalMerge.resources
+C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Debug\ICalMerge.IFormHelp.resources

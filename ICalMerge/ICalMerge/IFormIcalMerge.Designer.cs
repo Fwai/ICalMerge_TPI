@@ -1,6 +1,6 @@
 ﻿namespace ICalMerge
 {
-    partial class formIcal
+    partial class IFormIcalMerge
     {
         /// <summary>
         /// Variable nécessaire au concepteur.

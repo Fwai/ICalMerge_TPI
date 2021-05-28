@@ -13,7 +13,7 @@ namespace ICalMerge
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new formIcal());
+            Application.Run(new IFormIcalMerge());
         }
     }
 }

@@ -6,38 +6,33 @@ using System.Windows.Forms;
 
 namespace ICalMerge
 {
-    public partial class formIcal : Form
+    public partial class IFormIcalMerge : Form
     {
-        // Variables constantes
-        const string BACKSLASH_N = "\n";
-        // Sert à la fusion de fichiers
-        const string BEGIN_FUSED_CALENDAR = "BEGIN:VCALENDAR\nCALSCALE:GREGORIAN\n";
-        const string END_FUSED_FILE_MESSAGE1 = "Fusion terminée avec ";
-        const string END_FUSED_FILE_MESSAGE2 = " événements exportés";
-
-        // Propriété fichier ical
-        const string EVENT_PROPERTY_VEVENT = "VEVENT";
-        const string EVENT_PROPERTY_BEGIN = "BEGIN";
-        const string EVENT_PROPERTY_END = "END";
-        const string END_VCALENDAR = "END:VCALENDAR";   
 
         // Messages d'erreur
         const string ERROR_MAX_CREATED_FILES = "La limite de fichiers source a été atteinte";
         const string ERROR_MINIMUM_FILES = "Le programme nécessite deux sources au minimum";
         const string ERROR_INVALID_FILES = "Un ou plusieurs fichiers ne sont pas valides. Veuillez vérifier les sources KO.";
+
+        // Constantes - Donne des informations sur le résultat de la fusion
+        const string END_FUSED_FILE_MESSAGE1 = "Fusion terminée avec ";
+        const string END_FUSED_FILE_MESSAGE2 = " événements exportés";
         const string ERROR_UNMATCHED_EVENT_NUMBER = "Le nombre d'événements fusionnés ne correspond pas au nombre d'événements à fusionner.";
 
         // Formulaire d'aide
-        FormHelp fhFormHelp;
+        IFormHelp FhFormHelp;
+
+        // Classe qui permet de gérer la fusion de fichiers
+        Merger MergerObject;
 
         /* Définit une liste de sources. Les sources ont des composants visuels
            ainsi que des valeurs pouvant stocker le chemin d'une source définie par l'utilisateur. */
-        List<SourceComponents> listSources;
+        private List<SourceComponents> listSources;
 
         /// <summary>
         /// Constructeur de la classe formIcal.
         /// </summary>
-        public formIcal()
+        public IFormIcalMerge()
         {
             InitializeComponent();
 
@@ -47,8 +42,11 @@ namespace ICalMerge
             AddSource();
             AddSource();
 
+            // On créer un nouveau Merger pour qu'il puisse gérer la fusion.
+            MergerObject = new Merger();
+
             // On créer un nouveau formulaire d'aide
-            fhFormHelp = new FormHelp();
+            FhFormHelp = new IFormHelp();
         }
 
         /// <summary>
@@ -146,58 +144,14 @@ namespace ICalMerge
             // Remet à zéro la valeur de la barre de progression
             pbLoadMerge.Value = 0;
 
-            // Définition du maximum de la barre d eprogression. Correspond au nombre d'événement total à ajouter
+            // Définition du maximum de la barre de progression. Correspond au nombre d'événement total à ajouter
             foreach (SourceComponents calendar in listSources)
             {
                 // On modifie le mximum 
                 pbLoadMerge.Maximum += calendar.EventsNumber;
             }
 
-            // Contiendra tous les événements de touts les calendriers. Les premières lignes servent à définir le début du calendrier
-            string strAllMergedLines = BEGIN_FUSED_CALENDAR;
-
-            // Définit si la ligne traitée appartient à un événement
-            bool boolIsCopyingEvent = false;
-
-            // Parcourt tous les SourceComponents
-            foreach (SourceComponents calendar in listSources)
-            {
-                // Parcourt les données des sources components
-                foreach (string line in calendar.AllLines)
-                {
-                    // Vérifie si la  ligne correspond au début d'un événement
-                    if (line.Split(':')[0] == EVENT_PROPERTY_BEGIN && line.Split(':')[1] == EVENT_PROPERTY_VEVENT)
-                    {
-                        boolIsCopyingEvent = true; // Définit que le programme doit copier les prochaine slignes non reconnues. Car elles appartiendront forcéement à un événement
-
-                        // On ajoute la ligne à la chaîne de données à copier
-                        strAllMergedLines += line + BACKSLASH_N;
-
-                    } // Vérifie si c'est la fin d'un événement
-                    else if (line.Split(':')[0] == EVENT_PROPERTY_END && line.Split(':')[1] == EVENT_PROPERTY_VEVENT)
-                    {
-                        boolIsCopyingEvent = false;
-
-                        // On ajoute la ligne à la chaîne de données à copier
-                        strAllMergedLines += line + BACKSLASH_N;
-
-                        // Incrémentation de la valeur de la barre de progression.
-                        pbLoadMerge.Value += 1;
-                    }
-                    else
-                    {
-                        // Vérifie 
-                        if (boolIsCopyingEvent == true)
-                        {
-                            // On ajoute la ligne à la chaîne de données à copier
-                            strAllMergedLines += line + BACKSLASH_N;
-                        }
-                    }
-                }
-            }
-
-            // On ajoute la donnée qui définit la fin d'un calendrier.
-            strAllMergedLines += END_VCALENDAR;
+            MergerObject.FuseContent(pbLoadMerge, listSources, sfdSaveMergedCalendar, lblFusion);
 
             // vérifie que le nombre d'événement traité correspond au nombre d'événements à traiter
             if (pbLoadMerge.Value == pbLoadMerge.Maximum)
@@ -209,7 +163,8 @@ namespace ICalMerge
                     lblFusion.Text = END_FUSED_FILE_MESSAGE1 + Convert.ToString(pbLoadMerge.Value) + END_FUSED_FILE_MESSAGE2;
 
                     // On exporte les données dans à l'endroit choisi par l'utilisateur. Le nom de fichier est inclut dans le chemin.
-                    File.WriteAllText(sfdSaveMergedCalendar.FileName, strAllMergedLines);
+                    // l'Objet MERGER est utilisé pour la fusion des données.
+                    File.WriteAllText(sfdSaveMergedCalendar.FileName, MergerObject.StrAllMergedLines);
 
                     // On recharge tous les fichiers. Si un utilisateur a importé les calendriers dans un fichier source, il sera actualisé.
                     foreach (SourceComponents calendar in listSources)
@@ -223,7 +178,6 @@ namespace ICalMerge
                 // Si le nombre d'événements total à fusionner ne correspond pas au nombre d'événements ayant été fusionnés.
                 MessageBox.Show(ERROR_UNMATCHED_EVENT_NUMBER);
             }
-
         }
 
         // Permet d'ouvrir le formulaire d'aide lorsque l'utilisateur clique sur le label "Aide".
@@ -251,9 +205,9 @@ namespace ICalMerge
         /// </summary>
         public void OpenformHelp()
         {
-            fhFormHelp.Close();
-            fhFormHelp = new FormHelp();
-            fhFormHelp.Show();
+            FhFormHelp.Close();
+            FhFormHelp = new IFormHelp();
+            FhFormHelp.Show();
         }
     }
 }

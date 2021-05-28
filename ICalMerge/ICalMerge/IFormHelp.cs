@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace ICalMerge
 {
-    public partial class FormHelp : Form
+    public partial class IFormHelp : Form
     {
-        public FormHelp()
+        public IFormHelp()
         {
             InitializeComponent();
             SourceComponents scExample = new SourceComponents(pnlSource, 0, pnlSource, this, ofdExample);

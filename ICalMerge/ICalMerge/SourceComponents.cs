@@ -6,6 +6,9 @@ using System.Windows.Forms;
 
 namespace ICalMerge
 {
+    /// <summary>
+    /// Cette classe permet de recevoir toutes les informations concernant les fich
+    /// </summary>
     class SourceComponents
     {
         // Définit l'espace entre vertical entre chaque ligne de contrôles de sources. Un contrôle est un élément visuel.
