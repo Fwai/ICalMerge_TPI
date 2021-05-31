@@ -265,7 +265,7 @@ namespace ICalMerge
             // Remise à zéro du nombre d'événements
             EventsNumber = 0;
 
-            //Vérifie que le chemin du fichier est valide
+            // Vérifie que le chemin du fichier est valide
             if (File.Exists(tbSourcePath.Text))
             {
 
@@ -273,12 +273,13 @@ namespace ICalMerge
 
                 foreach (string line in AllLines)
                 {
+                    // Vérifie si l'on a atteint une ligne définissant le début d'un événement
                     if (line.Split(':')[0] == EVENT_PROPERTY_BEGIN && line.Split(':')[1] == EVENT_PROPERTY_VEVENT)
                     {
                         EventsNumber++;
                     }
                 }
-                switch (EventsNumber)
+                switch (EventsNumber) // On vérifie le nombre d'événements que l'on a pu sortir.
                 {
                     case 0:
                         // Comme le fichier ne contient aucun événements, c'est un KO et on l'affiche à l'utilisateur
