@@ -1,7 +1,6 @@
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\bin\Release\ICalMerge.exe.config
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\bin\Release\ICalMerge.exe
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\bin\Release\ICalMerge.pdb
-C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Release\ICalMerge.csprojAssemblyReference.cache
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Release\ICalMerge.IFormIcalMerge.resources
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Release\ICalMerge.IFormHelp.resources
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Release\ICalMerge.Properties.Resources.resources

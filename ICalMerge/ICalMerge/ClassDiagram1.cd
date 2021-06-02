@@ -1,2 +1,126 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="ICalMerge.IFormHelp">
+    <Position X="0.5" Y="0.75" Width="4" />
+    <Members>
+      <Field Name="btnAddSource" Hidden="true" />
+      <Field Name="btnCloseHelp" Hidden="true" />
+      <Field Name="btnFusion" Hidden="true" />
+      <Field Name="btnRemoveSource" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Field Name="label3" Hidden="true" />
+      <Field Name="label4" Hidden="true" />
+      <Field Name="label5" Hidden="true" />
+      <Field Name="lblIntro" Hidden="true" />
+      <Field Name="lblStep1" Hidden="true" />
+      <Field Name="lblStep2" Hidden="true" />
+      <Field Name="lblText1" Hidden="true" />
+      <Field Name="lblText2" Hidden="true" />
+      <Field Name="lbltext3" Hidden="true" />
+      <Field Name="ofdExample" Hidden="true" />
+      <Field Name="pbLoadMerge" Hidden="true" />
+      <Field Name="pictureBox1" Hidden="true" />
+      <Field Name="pnlSource" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AABCAAAAACAAARAAAACEAAICAMAAEQEAAAAAEIBAAEA=</HashCode>
+      <FileName>IFormHelp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICalMerge.IFormIcalMerge">
+    <Position X="0.5" Y="5" Width="4" />
+    <Members>
+      <Field Name="btnAddSource" Hidden="true" />
+      <Field Name="btnFusion" Hidden="true" />
+      <Field Name="btnRemoveSource" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="END_FUSED_FILE_MESSAGE1" Hidden="true" />
+      <Field Name="END_FUSED_FILE_MESSAGE2" Hidden="true" />
+      <Field Name="ERROR_INVALID_FILES" Hidden="true" />
+      <Field Name="ERROR_MAX_CREATED_FILES" Hidden="true" />
+      <Field Name="ERROR_MINIMUM_FILES" Hidden="true" />
+      <Field Name="ERROR_UNMATCHED_EVENT_NUMBER" Hidden="true" />
+      <Field Name="FhFormHelp" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="lblAide" Hidden="true" />
+      <Field Name="lblFusion" Hidden="true" />
+      <Field Name="listSources" Hidden="true" />
+      <Field Name="MergerObject" Hidden="true" />
+      <Field Name="opfdChooseFile" Hidden="true" />
+      <Field Name="panel2" Hidden="true" />
+      <Field Name="pbLoadMerge" Hidden="true" />
+      <Field Name="pictureBox1" Hidden="true" />
+      <Field Name="pictureBox2" Hidden="true" />
+      <Field Name="pnlFusion" Hidden="true" />
+      <Field Name="pnlSources" Hidden="true" />
+      <Field Name="sfdSaveMergedCalendar" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QACIAEgMACCABAACAACOAEIDIIAEBEgoAEIAEQBgAAA=</HashCode>
+      <FileName>IFormIcalMerge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICalMerge.Merger">
+    <Position X="0.5" Y="2.5" Width="4" />
+    <Members>
+      <Field Name="BACKSLASH_N" Hidden="true" />
+      <Field Name="BEGIN_FUSED_CALENDAR" Hidden="true" />
+      <Field Name="END_VCALENDAR" Hidden="true" />
+      <Field Name="EVENT_PROPERTY_BEGIN" Hidden="true" />
+      <Field Name="EVENT_PROPERTY_END" Hidden="true" />
+      <Field Name="EVENT_PROPERTY_VEVENT" Hidden="true" />
+      <Field Name="mainForm" Hidden="true" />
+      <Field Name="strAllMergedLines" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAgIABAAgAAAAoBAAgAAAAAAAAgAABAAAAQIgAAAAAA=</HashCode>
+      <FileName>Merger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICalMerge.Program">
+    <Position X="10.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ICalMerge.SourceComponents">
+    <Position X="5" Y="1.25" Width="7.5" />
+    <Members>
+      <Field Name="allLines" Hidden="true" />
+      <Field Name="btnBrowse" Hidden="true" />
+      <Field Name="DEFAULT_TEXT_EVENT_RESULT" Hidden="true" />
+      <Field Name="ERROR_MESSAGE_WRONG_FILE_TYPE" Hidden="true" />
+      <Field Name="EVENT_PROPERTY_BEGIN" Hidden="true" />
+      <Field Name="EVENT_PROPERTY_VEVENT" Hidden="true" />
+      <Field Name="eventsNumber" Hidden="true" />
+      <Field Name="EXPLORER_BUTTON_TEXT" Hidden="true" />
+      <Field Name="FILE_EXTENSION_NAME" Hidden="true" />
+      <Field Name="FILE_TYPE1" Hidden="true" />
+      <Field Name="INVALID_FILE_CONTENT" Hidden="true" />
+      <Field Name="INVALID_FILE_PATH" Hidden="true" />
+      <Field Name="isFileValidated" Hidden="true" />
+      <Field Name="lblEventResult" Hidden="true" />
+      <Field Name="lblSourceName" Hidden="true" />
+      <Field Name="listControls" Hidden="true" />
+      <Field Name="opfdOpenFile" Hidden="true" />
+      <Field Name="SOURCE_LABEL_FONT" Hidden="true" />
+      <Field Name="SOURCE_TEXT" Hidden="true" />
+      <Field Name="SPACE_BETWEEN_CONTROLS_LINES" Hidden="true" />
+      <Field Name="tbSourcePath" Hidden="true" />
+      <Field Name="VALID_FILE_CALENDAR_MULTIPLE" Hidden="true" />
+      <Field Name="VALID_FILE_CALENDAR_OK" Hidden="true" />
+      <Field Name="VALID_FILE_CALENDAR_SINGLE" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAAJAgUIACEASCAAQIggAEgAJAgAEjkABEEwADAAAAA=</HashCode>
+      <FileName>SourceComponents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
