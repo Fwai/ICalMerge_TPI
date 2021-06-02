@@ -171,7 +171,6 @@ namespace ICalMerge
                     lblFusion.Text = END_FUSED_FILE_MESSAGE1 + Convert.ToString(pbLoadMerge.Value) + END_FUSED_FILE_MESSAGE2;
 
                     // On exporte les données dans à l'endroit choisi par l'utilisateur. Le nom de fichier est inclut dans le chemin.
-
                     File.WriteAllText(sfdSaveMergedCalendar.FileName, MergerObject.StrAllMergedLines);
 
                     // On recharge tous les fichiers. Si un utilisateur a importé les calendriers dans un fichier source, il sera actualisé.
@@ -179,6 +178,7 @@ namespace ICalMerge
                     {
                         calendar.VerifyFileIntegrity();
                     }
+
                 }
             }
             else
@@ -188,6 +188,7 @@ namespace ICalMerge
             }
 
             MergerObject.FinishCalendar();
+            pbLoadMerge.Value = 0;
         }
 
         // Permet d'ouvrir le formulaire d'aide lorsque l'utilisateur clique sur le label "Aide".

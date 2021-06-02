@@ -26,9 +26,6 @@ namespace ICalMerge
         // Texte de base. Il est affiché en attendant qu'il soit changé par la vérification du nombre d'événements.
         const string DEFAULT_TEXT_EVENT_RESULT = "Analyse attendue";
 
-        // Texte du message d'erreur si l'utilisateur entre un fichier qui n'est pas au format .ics
-        const string ERROR_MESSAGE_WRONG_FILE_TYPE = "Le type de fichier n'est pas valide. Veuillez insérer uniquement des fichiers avec l'extension .ics";
-
         // Contient le nom du type de fichier voulu. Donc "ics". Il est le numéro 1 car à l'avenir il se pourrait que quelqu'un reprenne le programme et veuille fusionner d'autre type de fichiers.
         const string FILE_TYPE1 = "ics";
 
@@ -44,7 +41,11 @@ namespace ICalMerge
         // Propriété fichier ical
         const string EVENT_PROPERTY_VEVENT = "VEVENT";
         const string EVENT_PROPERTY_BEGIN = "BEGIN";
+        const string EVENT_PROPERTY_END = "END";
         const string FILE_EXTENSION_NAME = "ics";
+
+        // Permet de vérifier si l'entier d'un événement a été entré
+        bool verifyCompletedEvent;
 
 
         // Ce sont tous les contrôles qui vont être affichés visuellement à l'utilisateur.
@@ -230,16 +231,7 @@ namespace ICalMerge
             string[] files = e.Data.GetData(DataFormats.FileDrop) as string[]; // Reçoit tous les fichiers déposés
             if (files != null && files.Any())
             {
-                // Vérification de l'extension du fichier
-                if (files.First().Split('.')[files.First().Split('.').Length - 1] == FILE_TYPE1)
-                {
-                    tbSourcePath.Text = files.First(); // Choisit le premier fichier
-                }
-                else
-                {
-                    // L'extension n'est pas valide, donc nous mettons l'utilisateur au courant
-                    MessageBox.Show(ERROR_MESSAGE_WRONG_FILE_TYPE);
-                }
+                tbSourcePath.Text = files.First(); // Choisit le premier fichier
             }
         }
 
@@ -256,14 +248,16 @@ namespace ICalMerge
         /// <summary>
         /// Vérifie les critères suivants:
         /// - La validité du chemin du fichier
-        /// - La validité du type de fichier
         /// - La validité du contenu du fichier
         /// - Le nombre d'événement que contient le fichier
         /// </summary>
         public void VerifyFileIntegrity()
         {
+            
             // Remise à zéro du nombre d'événements
             EventsNumber = 0;
+            verifyCompletedEvent = false;
+           
 
             // Vérifie que le chemin du fichier est valide
             if (File.Exists(tbSourcePath.Text))
@@ -276,7 +270,14 @@ namespace ICalMerge
                     // Vérifie si l'on a atteint une ligne définissant le début d'un événement
                     if (line.Split(':')[0] == EVENT_PROPERTY_BEGIN && line.Split(':')[1] == EVENT_PROPERTY_VEVENT)
                     {
+                        verifyCompletedEvent = true;
+                    }
+                    // On vérifie si on a fini de parcourir un événement. Si c'est le cas, cela veut dire qu'il y'a un événement supplémentaire dans le fichier.
+                    else if (line.Split(':')[0] == EVENT_PROPERTY_END && line.Split(':')[1] == EVENT_PROPERTY_VEVENT&&verifyCompletedEvent==true)
+                    {
+                        // Incrémente le nombre d'événement, car on en a trouvé un nouveau qui est valide.
                         EventsNumber++;
+                        verifyCompletedEvent = false;
                     }
                 }
                 switch (EventsNumber) // On vérifie le nombre d'événements que l'on a pu sortir.

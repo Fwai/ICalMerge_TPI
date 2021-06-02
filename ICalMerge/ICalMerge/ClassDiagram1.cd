@@ -95,7 +95,6 @@
       <Field Name="allLines" Hidden="true" />
       <Field Name="btnBrowse" Hidden="true" />
       <Field Name="DEFAULT_TEXT_EVENT_RESULT" Hidden="true" />
-      <Field Name="ERROR_MESSAGE_WRONG_FILE_TYPE" Hidden="true" />
       <Field Name="EVENT_PROPERTY_BEGIN" Hidden="true" />
       <Field Name="EVENT_PROPERTY_VEVENT" Hidden="true" />
       <Field Name="eventsNumber" Hidden="true" />
@@ -118,7 +117,7 @@
       <Field Name="VALID_FILE_CALENDAR_SINGLE" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>QAAJAgUIACEASCAAQIggAEgAJAgAEjkABEEwADAAAAA=</HashCode>
+      <HashCode>AAAJAgUIACEASCAAQIggAEgAJAgAEjkABEEwADAAAAA=</HashCode>
       <FileName>SourceComponents.cs</FileName>
     </TypeIdentifier>
   </Class>

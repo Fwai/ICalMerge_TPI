@@ -18,3 +18,4 @@ C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\o
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Debug\ICalMerge.pdb
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Debug\ICalMerge.IFormIcalMerge.resources
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Debug\ICalMerge.IFormHelp.resources
+C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Debug\ICalMerge.csprojAssemblyReference.cache
