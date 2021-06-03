@@ -8,3 +8,4 @@ C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\o
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Release\ICalMerge.csproj.CoreCompileInputs.cache
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Release\ICalMerge.exe
 C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Release\ICalMerge.pdb
+C:\Users\leoluna\Desktop\GitTPI\GitICalMerge\ICalMerge_TPI\ICalMerge\ICalMerge\obj\Release\ICalMerge.csprojAssemblyReference.cache
